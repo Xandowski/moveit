@@ -1,41 +1,33 @@
-# TypeScript Next.js example
+<div align="center">
 
-This is a really simple project that shows the usage of Next.js with TypeScript.
+# Moveit
 
-## Deploy your own
+This is an application made in next-level-week-4 powered by [Rocketseat](https://rocketseat.com.br/). 🚀
 
-Deploy the example using [Vercel](https://vercel.com?utm_source=github&utm_medium=readme&utm_campaign=next-example):
+</div>
 
-[![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new/git/external?repository-url=https://github.com/vercel/next.js/tree/canary/examples/with-typescript&project-name=with-typescript&repository-name=with-typescript)
+<div align="center">
 
-## How to use it?
+[![NextJS](https://img.shields.io/badge/-NextJS-blue?style&logo=vercel&link=https://nextjs.org/)](https://nextjs.org/)
+[![styled-components](https://img.shields.io/badge/%F0%9F%92%85%20styled-components-orange.svg?colorB=daa357&colorA=db748e)](https://github.com/styled-components/styled-components)
+[![TypeScript](https://img.shields.io/badge/-TypeScript-3178C6?style&logo=typescript&logoColor=fff&link=https://www.typescriptlang.org)](https://www.typescriptlang.org)
 
-Execute [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app) with [npm](https://docs.npmjs.com/cli/init) or [Yarn](https://yarnpkg.com/lang/en/docs/cli/create/) to bootstrap the example:
+</div>
 
-```bash
-npx create-next-app --example with-typescript with-typescript-app
-# or
-yarn create next-app --example with-typescript with-typescript-app
-```
+<img align="center" src="/images/nlw04.png">
 
-Deploy it to the cloud with [Vercel](https://vercel.com/new?utm_source=github&utm_medium=readme&utm_campaign=next-example) ([Documentation](https://nextjs.org/docs/deployment)).
+## Layout
 
-## Notes
+- [Figma](https://www.figma.com/file/ge20pu3ofMOKoliUyKx1Nl/?viewer=1&node-id=160:2761)
 
-This example shows how to integrate the TypeScript type system into Next.js. Since TypeScript is supported out of the box with Next.js, all we have to do is to install TypeScript.
 
-```
-npm install --save-dev typescript
-```
+## Some useful links
 
-To enable TypeScript's features, we install the type declarations for React and Node.
-
-```
-npm install --save-dev @types/react @types/react-dom @types/node
-```
-
-When we run `next dev` the next time, Next.js will start looking for any `.ts` or `.tsx` files in our project and builds it. It even automatically creates a `tsconfig.json` file for our project with the recommended settings.
-
-Next.js has built-in TypeScript declarations, so we'll get autocompletion for Next.js' modules straight away.
-
-A `type-check` script is also added to `package.json`, which runs TypeScript's `tsc` CLI in `noEmit` mode to run type-checking separately. You can then include this, for example, in your `test` scripts.
+- [NextJS](https://nextjs.org/docs/getting-started) - NextJS getting started
+- [ReactJS](https://reactjs.org/docs/getting-started.html) - ReactJS getting started
+- [Styled-components](https://styled-components.com/docs/basics#getting-started) - styled-components getting started
+- [TypeScript](https://www.typescriptlang.org/docs/) - Typescript getting started
+- [NodeJS](https://nodejs.org/en/) - NodeJS docs
+- [VSCode](https://code.visualstudio.com/) - My favorite code editor
+- [Discord](https://discord.gg/rYYTbuhD) - Rocketseat discord server
+- [ESLint](https://eslint.org/docs/user-guide/getting-started) - Eslint getting started
