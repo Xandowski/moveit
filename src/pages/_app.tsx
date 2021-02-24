@@ -1,6 +1,20 @@
 import type { AppProps /* , AppContext */ } from 'next/app'
-import { createGlobalStyle } from 'styled-components'
-import Head from 'next/head'
+import { createGlobalStyle, ThemeProvider } from 'styled-components'
+
+const theme = {
+  colors: {
+    background: "#F2F3F5",
+    grayLine: "#DcDDE0",
+    white: "white",
+    text: "#666",
+    title: "#2E384D",
+    red: "#E83F5B",
+    green: "#4CD62B",
+    blue: "#5965E0",
+    blueDark: "#4953B8",
+    blueTwitter: "#2AA9E0"
+  }
+}
 
 const GlobalStyle = createGlobalStyle`
   * {
@@ -37,13 +51,18 @@ const GlobalStyle = createGlobalStyle`
   body {
     background: var(--background);
     color: var(--text);
-    height: 100vh;
-    max-width: 992px;
-    margin: 0 auto;
-    padding: 2.5rem 2rem;
+    
+    > div {
+      > div {
+        height: 100vh;
+        max-width: 992px;
+        margin: 0 auto;
+        padding: 2.5rem 2rem;
 
-    display: flex;
-    flex-direction: column;
+        display: flex;
+        flex-direction: column;
+      }
+    }
   }
 
   body, input, textarea, button {
@@ -58,29 +77,24 @@ const GlobalStyle = createGlobalStyle`
     color: inherit;
     text-decoration: none;
   }
+
+  section {
+    /* padding: 6.8rem 0; */
+    flex: 1;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 6.25rem;
+    align-content: center;
+  }
 `
 
 export default function MyApp({ Component, pageProps }: AppProps) {
   return (
     <>
-      <Head>
-        <link rel="preconnect" href="https://fonts.gstatic.com" />
-        <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Rajdhani:wght@600&display=swap" rel="stylesheet" />
-      </Head>
-      <GlobalStyle />
-      <Component {...pageProps} />
+      <ThemeProvider theme={theme}>
+        <GlobalStyle />
+        <Component {...pageProps} />
+      </ThemeProvider>
     </>
   )
 }
-
-// Only uncomment this method if you have blocking data requirements for
-// every single page in your application. This disables the ability to
-// perform automatic static optimization, causing every page in your app to
-// be server-side rendered.
-//
-// MyApp.getInitialProps = async (appContext: AppContext) => {
-//   // calls page's `getInitialProps` and fills `appProps.pageProps`
-//   const appProps = await App.getInitialProps(appContext);
-
-//   return { ...appProps }
-// }
