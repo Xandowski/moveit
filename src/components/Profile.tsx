@@ -1,4 +1,6 @@
+import { useContext } from 'react'
 import styled from 'styled-components'
+import { ChallengesContext } from '../contexts/ChallengesContext'
 
 const ProfileContainer = styled.div`
   display: flex;
@@ -30,17 +32,22 @@ const ProfileContainer = styled.div`
   }
 ` 
 
-const Profile = () => (
-  <ProfileContainer>
-    <img src="https://github.com/Xandowski.png" alt="github avatar"/>
-    <div>
-      <strong>Alexandre Morais</strong>
-      <p>
-        <img src="icons/level.svg" alt="level"/>
-        Level 1
-      </p>
-    </div>
-  </ProfileContainer>
-)
+const Profile = () => {
+  const { level} = useContext(ChallengesContext)
+
+
+  return (
+    <ProfileContainer>
+      <img src="https://github.com/Xandowski.png" alt="github avatar"/>
+      <div>
+        <strong>Alexandre Morais</strong>
+        <p>
+          <img src="icons/level.svg" alt="level"/>
+          Level {level}
+        </p>
+      </div>
+    </ProfileContainer>
+  )
+}
 
 export default Profile

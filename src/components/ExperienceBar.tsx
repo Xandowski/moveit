@@ -32,11 +32,7 @@ const HeaderBar = styled.header`
   }
 `
 
-interface ExperienceBarProps {
-  progress: string
-}
-
-const ExperienceBar = ({ progress }: ExperienceBarProps) => {
+const ExperienceBar = () => {
   const { currentExperience, experienceToNextLevel} = useContext(ChallengesContext)
 
   const percentToNextLevel = Math.round((currentExperience * 100) / experienceToNextLevel)
