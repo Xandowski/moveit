@@ -1,5 +1,8 @@
 import type { AppProps /* , AppContext */ } from 'next/app'
+import React from 'react'
 import { createGlobalStyle, ThemeProvider } from 'styled-components'
+
+import { ChallengesProvider} from '../contexts/ChallengesContext'
 
 const theme = {
   colors: {
@@ -85,16 +88,23 @@ const GlobalStyle = createGlobalStyle`
     grid-template-columns: 1fr 1fr;
     gap: 6.25rem;
     align-content: center;
+    
+    > div:last-child {
+      background: ${() => theme.colors.white};
+      border-radius: 5px;
+      box-shadow: 0 0 60px rgba(0, 0, 0, 0.05);
+      padding: 1.5rem 2rem;
+    }
   }
 `
 
 export default function MyApp({ Component, pageProps }: AppProps) {
   return (
-    <>
+    <ChallengesProvider>
       <ThemeProvider theme={theme}>
         <GlobalStyle />
         <Component {...pageProps} />
       </ThemeProvider>
-    </>
+    </ChallengesProvider>
   )
 }

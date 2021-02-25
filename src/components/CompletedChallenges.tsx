@@ -1,4 +1,6 @@
+import { useContext } from 'react'
 import styled from 'styled-components'
+import { ChallengesContext } from '../contexts/ChallengesContext'
 
 const Div = styled.div`
   border-bottom: 1px solid var(--gray-line);
@@ -18,11 +20,14 @@ const Div = styled.div`
   }
 `
 
-const CompletedChallenges = () => (
-  <Div>
-    <span>Desafios completos</span>
-    <strong>00</strong>
-  </Div>
-)
+const CompletedChallenges = () => {
+  const { challengesCompleted } = useContext(ChallengesContext)
+  return (
+    <Div>
+      <span>Desafios completos</span>
+      <strong>{challengesCompleted}</strong>
+    </Div>
+  )
+}
 
 export default CompletedChallenges

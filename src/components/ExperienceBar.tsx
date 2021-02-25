@@ -1,4 +1,6 @@
+import { useContext } from 'react'
 import styled from 'styled-components'
+import { ChallengesContext } from '../contexts/ChallengesContext'
 
 const HeaderBar = styled.header`
   display: flex;
@@ -34,15 +36,22 @@ interface ExperienceBarProps {
   progress: string
 }
 
-const ExperienceBar = ({ progress }: ExperienceBarProps) => (
-  <HeaderBar>
-    <span>0 xp</span>
-    <div>
-      <div style={{ width: progress }} />
-      <span style={{ left: progress }}>300 xp</span>
-    </div>
-    <span>600 xp</span>
-  </HeaderBar>
-)
+const ExperienceBar = ({ progress }: ExperienceBarProps) => {
+  const { currentExperience, experienceToNextLevel} = useContext(ChallengesContext)
+
+  const percentToNextLevel = Math.round((currentExperience * 100) / experienceToNextLevel)
+
+  return (
+    <HeaderBar>
+      <span>0 xp</span>
+      <div>
+        <div style={{ width: `${percentToNextLevel}%` }} />
+        <span style={{ left: `${percentToNextLevel}%`}}>{currentExperience} xp</span>
+      </div>
+      <span>{experienceToNextLevel} xp</span>
+    </HeaderBar>
+  )
+}
+
 
 export default ExperienceBar

@@ -3,7 +3,7 @@ import styled from 'styled-components'
 interface ButtonProps {
   buttonStyle?: string,
   children: string,
-  onClick?: boolean,
+  onClick?: () => void,
   disabled?: boolean
 }
 
