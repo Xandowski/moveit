@@ -1,10 +1,10 @@
-import { FunctionComponent } from 'react'
 import styled from 'styled-components'
 
 interface ButtonProps {
   buttonStyle?: string,
   children: string,
-  onClick: Boolean
+  onClick?: boolean,
+  disabled?: boolean
 }
 
 const ButtonBase = styled.button<ButtonProps>`
@@ -17,13 +17,21 @@ const ButtonBase = styled.button<ButtonProps>`
     || props.buttonStyle == 'cancel' && (({theme}) => `${theme.colors.title}`)
   };
 
-  &:hover {
+  &:not(:disabled):hover {
     background-color: ${
       props => props.buttonStyle == 'start' && (({theme}) => `${theme.colors.blueDark}`)
       || props.buttonStyle == 'cancel' && (({theme}) => `${theme.colors.red}`)
     };
     color: white;
   }
+
+  &:disabled {
+    background-color: ${({theme}) => theme.colors.white};
+    color: ${({theme}) => theme.colors.text};
+    cursor: not-allowed;
+    border-bottom: 3px solid ${({theme}) => theme.colors.green};
+  }
+
 
   font-size: 1.25rem;
   font-weight: 600;
@@ -39,11 +47,12 @@ const ButtonBase = styled.button<ButtonProps>`
   justify-content: center;
 `
 
-const Button: React.FC<ButtonProps> = ({buttonStyle, children, onClick}: ButtonProps) => (
-  <ButtonBase 
-    type="button"
-    buttonStyle={buttonStyle}
-    onClick={onClick}
+const Button: React.FC<ButtonProps> = ({buttonStyle, children, onClick, disabled}: ButtonProps) => (
+  <ButtonBase
+  type="button"
+  buttonStyle={buttonStyle}
+  onClick={onClick}
+  disabled={disabled} 
   >{children}</ButtonBase>
 )
 
