@@ -2,7 +2,7 @@ import styled from 'styled-components'
 
 interface ButtonProps {
   buttonStyle?: string,
-  children: string,
+  children: React.ReactNode,
   onClick?: () => void,
   disabled?: boolean
 }
@@ -10,28 +10,52 @@ interface ButtonProps {
 const ButtonBase = styled.button<ButtonProps>`
   background-color: ${
     props => props.buttonStyle == 'start' && (({theme}) => `${theme.colors.blue}`)
-    || props.buttonStyle == 'cancel' && (({theme}) => `${theme.colors.white}`)
+    || props.buttonStyle == 'cancel' && (({theme}) => `${theme.colors.red}`)
   };
-  color: ${
-    props => props.buttonStyle == 'start' && (({theme}) => `${theme.colors.white}`)
-    || props.buttonStyle == 'cancel' && (({theme}) => `${theme.colors.title}`)
-  };
+  color: ${({theme}) => `${theme.colors.white}`};
+
+  &:not(:disabled) {
+    > div {
+      margin-left: 20px;
+    }
+  }
 
   &:not(:disabled):hover {
     background-color: ${
       props => props.buttonStyle == 'start' && (({theme}) => `${theme.colors.blueDark}`)
-      || props.buttonStyle == 'cancel' && (({theme}) => `${theme.colors.red}`)
+      || props.buttonStyle == 'cancel' && (({theme}) => `${theme.colors.redDark}`)
     };
-    color: white;
+  }
+
+  @keyframes cyclecompleted {
+    from {
+      width: 0%;
+      
+      background-color: transparent;
+    }
+    to {
+      width: 100%;
+      background-color: ${({theme}) => theme.colors.green};
+    }
+  }
+  
+  position: relative;
+
+  hr{
+    left: 0;
+    width: 0%;
+    height: 3px;
+    background-color: transparent;
+    position: absolute;
+    bottom: 0;
+    animation: cyclecompleted 1s forwards;
   }
 
   &:disabled {
     background-color: ${({theme}) => theme.colors.white};
     color: ${({theme}) => theme.colors.text};
     cursor: not-allowed;
-    border-bottom: 3px solid ${({theme}) => theme.colors.green};
   }
-
 
   font-size: 1.25rem;
   font-weight: 600;
