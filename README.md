@@ -11,10 +11,16 @@ This is an application made in next-level-week-4 powered by [Rocketseat](https:/
 [![NextJS](https://img.shields.io/badge/-NextJS-blue?style&logo=vercel&link=https://nextjs.org/)](https://nextjs.org/)
 [![styled-components](https://img.shields.io/badge/%F0%9F%92%85%20styled-components-orange.svg?colorB=daa357&colorA=db748e)](https://github.com/styled-components/styled-components)
 [![TypeScript](https://img.shields.io/badge/-TypeScript-3178C6?style&logo=typescript&logoColor=fff&link=https://www.typescriptlang.org)](https://www.typescriptlang.org)
+[![Lottie](https://img.shields.io/badge/-Lottie-08B9BB?style&logo=airbnb&link=https://lottiefiles.com/)](https://lottiefiles.com)
+[![Framer Motion](https://img.shields.io/badge/-FramerMotion-808080?style&logo=framer&link=https://www.framer.com/)](https://www.framer.com/motion/)
 
 </div>
 
-<img align="center" src="/images/nlw04.png">
+<p>
+  <img align="center" src="public/images/nlw-04.png">
+</p>
+
+
 
 ## Layout
 
@@ -31,3 +37,5 @@ This is an application made in next-level-week-4 powered by [Rocketseat](https:/
 - [VSCode](https://code.visualstudio.com/) - My favorite code editor
 - [Discord](https://discord.gg/rYYTbuhD) - Rocketseat discord server
 - [ESLint](https://eslint.org/docs/user-guide/getting-started) - Eslint getting started
+- [Framer Motion](https://www.framer.com/api/motion/) - Motion API
+- [Lottie](https://lottiefiles.com/what-is-lottie) - About lottie
