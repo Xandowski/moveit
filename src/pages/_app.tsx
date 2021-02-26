@@ -2,8 +2,6 @@ import type { AppProps /* , AppContext */ } from 'next/app'
 import React from 'react'
 import { createGlobalStyle, ThemeProvider } from 'styled-components'
 
-import { ChallengesProvider} from '../contexts/ChallengesContext'
-
 const theme = {
   colors: {
     background: "#F2F3F5",
@@ -101,11 +99,9 @@ const GlobalStyle = createGlobalStyle`
 
 export default function MyApp({ Component, pageProps }: AppProps) {
   return (
-    <ChallengesProvider>
-      <ThemeProvider theme={theme}>
-        <GlobalStyle />
-        <Component {...pageProps} />
-      </ThemeProvider>
-    </ChallengesProvider>
+    <ThemeProvider theme={theme}>
+      <GlobalStyle />
+      <Component {...pageProps} />
+    </ThemeProvider>
   )
 }
