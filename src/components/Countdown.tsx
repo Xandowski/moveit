@@ -14,7 +14,7 @@ const Div = styled.div`
   align-items: center;
   font-family: Rajdhani;
   font-weight: 600;
-  color: var(--title);
+  color: ${({ theme }) => theme.colors.title};
   font-size: 7.5rem;
 
   > div {

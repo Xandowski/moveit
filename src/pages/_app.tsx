@@ -25,19 +25,6 @@ const GlobalStyle = createGlobalStyle`
     box-sizing: border-box;
   }
 
-  :root {
-    --background: #F2F3F5;
-    --gray-line: #DcDDE0;
-    --text: #666;
-    --text-highlight: #B3B9FF;
-    --title: #2E384D;
-    --red: #E83F5B;
-    --green: #4CD62B;
-    --blue: #5965E0;
-    --blue-dark: #4953B8;
-    --blue-twitter: #2AA9E0;
-  }
-
   @media(max-width: 1080px) {
     html {
       font-size: 93.75%;
@@ -51,8 +38,8 @@ const GlobalStyle = createGlobalStyle`
   }
 
   body {
-    background: var(--background);
-    color: var(--text);
+    background: ${() => theme.colors.background};
+    color: ${() => theme.colors.text};
     
     > div {
       > div {
@@ -81,7 +68,6 @@ const GlobalStyle = createGlobalStyle`
   }
 
   section {
-    /* padding: 6.8rem 0; */
     flex: 1;
     display: grid;
     grid-template-columns: 1fr 1fr;

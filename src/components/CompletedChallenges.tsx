@@ -3,7 +3,7 @@ import styled from 'styled-components'
 import { ChallengesContext } from '../contexts/ChallengesContext'
 
 const Div = styled.div`
-  border-bottom: 1px solid var(--gray-line);
+  border-bottom: 1px solid ${({ theme }) => theme.colors.grayLine};
   margin: 3.5rem 0;
   padding-bottom: 1rem;
 
