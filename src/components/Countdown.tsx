@@ -32,7 +32,7 @@ const Div = styled.div`
       flex: 1;
     }
   }
-  
+
   div {
     background-color: white;
   }
@@ -44,17 +44,21 @@ const Div = styled.div`
 `
 
 const Countdown = () => {
-  const { 
-    minutes, 
-    seconds, 
-    hasFinished, 
-    isActive, 
-    startCountdown, 
-    resetCountdown
+  const {
+    minutes,
+    seconds,
+    hasFinished,
+    isActive,
+    startCountdown,
+    resetCountdown,
   } = useContext(CountdownContext)
 
-  const [minutesLeftString, minutesRightString] = String(minutes).padStart(2, '0').split('')
-  const [secondsLeftString, secondsRightString] = String(seconds).padStart(2, '0').split('')
+  const [minutesLeftString, minutesRightString] = String(minutes)
+    .padStart(2, '0')
+    .split('')
+  const [secondsLeftString, secondsRightString] = String(seconds)
+    .padStart(2, '0')
+    .split('')
 
   const defaultFowardOptions = {
     loop: true,
@@ -63,7 +67,7 @@ const Countdown = () => {
     rendererSettings: {
       preserveAspectRatio: 'xMidYMid slice',
     },
-    speed: 1.5
+    speed: 1.5,
   }
 
   const defaultCancelOptions = {
@@ -73,7 +77,7 @@ const Countdown = () => {
     rendererSettings: {
       preserveAspectRatio: 'xMidYMid slice',
     },
-    speed: 0.7
+    speed: 0.7,
   }
 
   const defaultCorrectOptions = {
@@ -83,86 +87,53 @@ const Countdown = () => {
     rendererSettings: {
       preserveAspectRatio: 'xMidYMid slice',
     },
-    speed: 1
+    speed: 1,
   }
 
   return (
     <div>
       <Div>
         <div>
-          <TimeNumber
-            side="right"
-            value="-100px"
-          >
+          <TimeNumber side="right" value="-100px">
             {minutesLeftString}
           </TimeNumber>
-          <TimeNumber
-            side="right"
-            value="100px"
-          >
+          <TimeNumber side="right" value="100px">
             {minutesRightString}
           </TimeNumber>
         </div>
         <span>:</span>
         <div>
-          <TimeNumber
-            side="right"
-            value="-100px"
-          >
+          <TimeNumber side="right" value="-100px">
             {secondsLeftString}
           </TimeNumber>
-          <TimeNumber
-            side="right"
-            value="100px"
-          >
+          <TimeNumber side="right" value="100px">
             {secondsRightString}
           </TimeNumber>
         </div>
       </Div>
-      { hasFinished ? (
-        <Button
-          disabled
-          buttonStyle="cancel"
-        >
+      {hasFinished ? (
+        <Button disabled buttonStyle="cancel">
           Ciclo encerrado
           <div>
-            <Lottie
-              options={defaultCorrectOptions}
-              height={60}
-              width={60}
-            />
+            <Lottie options={defaultCorrectOptions} height={60} width={60} />
           </div>
-          <hr/>
+          <hr />
         </Button>
       ) : (
         <>
-          { isActive ? (
-            <Button
-              buttonStyle="cancel"
-              onClick={resetCountdown}
-            >
+          {isActive ? (
+            <Button buttonStyle="cancel" onClick={resetCountdown}>
               Abandonar ciclo
               <div>
-                <Lottie
-                  options={defaultCancelOptions}
-                  height={20}
-                  width={20}
-                />
+                <Lottie options={defaultCancelOptions} height={20} width={20} />
               </div>
             </Button>
           ) : (
-            <Button
-              buttonStyle="start"
-              onClick={startCountdown}
-            >
+            <Button buttonStyle="start" onClick={startCountdown}>
               Iniciar ciclo
-             <div>
-              <Lottie
-                options={defaultFowardOptions}
-                height={30}
-                width={30}
-              />
-             </div>
+              <div>
+                <Lottie options={defaultFowardOptions} height={30} width={30} />
+              </div>
             </Button>
           )}
         </>

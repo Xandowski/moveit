@@ -33,21 +33,26 @@ const HeaderBar = styled.header`
 `
 
 const ExperienceBar = () => {
-  const { currentExperience, experienceToNextLevel} = useContext(ChallengesContext)
+  const { currentExperience, experienceToNextLevel } = useContext(
+    ChallengesContext
+  )
 
-  const percentToNextLevel = Math.round((currentExperience * 100) / experienceToNextLevel)
+  const percentToNextLevel = Math.round(
+    (currentExperience * 100) / experienceToNextLevel
+  )
 
   return (
     <HeaderBar>
       <span>0 xp</span>
       <div>
         <div style={{ width: `${percentToNextLevel}%` }} />
-        <span style={{ left: `${percentToNextLevel}%`}}>{currentExperience} xp</span>
+        <span style={{ left: `${percentToNextLevel}%` }}>
+          {currentExperience} xp
+        </span>
       </div>
       <span>{experienceToNextLevel} xp</span>
     </HeaderBar>
   )
 }
-
 
 export default ExperienceBar

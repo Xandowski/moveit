@@ -30,19 +30,18 @@ const ProfileContainer = styled.div`
       }
     }
   }
-` 
+`
 
 const Profile = () => {
-  const { level} = useContext(ChallengesContext)
-
+  const { level } = useContext(ChallengesContext)
 
   return (
     <ProfileContainer>
-      <img src="https://github.com/Xandowski.png" alt="github avatar"/>
+      <img src="https://github.com/Xandowski.png" alt="github avatar" />
       <div>
         <strong>Alexandre Morais</strong>
         <p>
-          <img src="icons/level.svg" alt="level"/>
+          <img src="icons/level.svg" alt="level" />
           Level {level}
         </p>
       </div>

@@ -1,18 +1,17 @@
 import styled from 'styled-components'
 
 interface ButtonProps {
-  buttonStyle?: string,
-  children: React.ReactNode,
-  onClick?: () => void,
+  buttonStyle?: string
+  children: React.ReactNode
+  onClick?: () => void
   disabled?: boolean
 }
 
 const ButtonBase = styled.button<ButtonProps>`
-  background-color: ${
-    props => props.buttonStyle == 'start' && (({theme}) => `${theme.colors.blue}`)
-    || props.buttonStyle == 'cancel' && (({theme}) => `${theme.colors.red}`)
-  };
-  color: ${({theme}) => `${theme.colors.white}`};
+  background-color: ${(props) =>
+    (props.buttonStyle == 'start' && (({ theme }) => `${theme.colors.blue}`)) ||
+    (props.buttonStyle == 'cancel' && (({ theme }) => `${theme.colors.red}`))};
+  color: ${({ theme }) => `${theme.colors.white}`};
 
   &:not(:disabled) {
     > div {
@@ -21,27 +20,28 @@ const ButtonBase = styled.button<ButtonProps>`
   }
 
   &:not(:disabled):hover {
-    background-color: ${
-      props => props.buttonStyle == 'start' && (({theme}) => `${theme.colors.blueDark}`)
-      || props.buttonStyle == 'cancel' && (({theme}) => `${theme.colors.redDark}`)
-    };
+    background-color: ${(props) =>
+      (props.buttonStyle == 'start' &&
+        (({ theme }) => `${theme.colors.blueDark}`)) ||
+      (props.buttonStyle == 'cancel' &&
+        (({ theme }) => `${theme.colors.redDark}`))};
   }
 
   @keyframes cyclecompleted {
     from {
       width: 0%;
-      
+
       background-color: transparent;
     }
     to {
       width: 100%;
-      background-color: ${({theme}) => theme.colors.green};
+      background-color: ${({ theme }) => theme.colors.green};
     }
   }
-  
+
   position: relative;
 
-  hr{
+  hr {
     left: 0;
     width: 0%;
     height: 3px;
@@ -52,8 +52,8 @@ const ButtonBase = styled.button<ButtonProps>`
   }
 
   &:disabled {
-    background-color: ${({theme}) => theme.colors.white};
-    color: ${({theme}) => theme.colors.text};
+    background-color: ${({ theme }) => theme.colors.white};
+    color: ${({ theme }) => theme.colors.text};
     cursor: not-allowed;
   }
 
@@ -71,13 +71,20 @@ const ButtonBase = styled.button<ButtonProps>`
   justify-content: center;
 `
 
-const Button: React.FC<ButtonProps> = ({buttonStyle, children, onClick, disabled}: ButtonProps) => (
+const Button: React.FC<ButtonProps> = ({
+  buttonStyle,
+  children,
+  onClick,
+  disabled,
+}: ButtonProps) => (
   <ButtonBase
-  type="button"
-  buttonStyle={buttonStyle}
-  onClick={onClick}
-  disabled={disabled} 
-  >{children}</ButtonBase>
+    type="button"
+    buttonStyle={buttonStyle}
+    onClick={onClick}
+    disabled={disabled}
+  >
+    {children}
+  </ButtonBase>
 )
 
 export default Button

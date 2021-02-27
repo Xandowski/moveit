@@ -20,7 +20,7 @@ const Div = styled.div`
 `
 
 const Modal = styled(motion.div)`
-  background: ${( {theme} ) => theme.colors.white};
+  background: ${({ theme }) => theme.colors.white};
   width: 100%;
   max-width: 400px;
   padding: 2rem 3rem;
@@ -40,7 +40,7 @@ const Modal = styled(motion.div)`
     font-size: 8.75rem;
     font-weight: 600;
     width: 100%;
-    color: ${({theme}) => theme.colors.blue};
+    color: ${({ theme }) => theme.colors.blue};
     background: url('/icons/levelup.svg') no-repeat center;
     background-size: contain;
     display: inline-block;
@@ -49,12 +49,12 @@ const Modal = styled(motion.div)`
 
   strong {
     font-size: 2.25rem;
-    color: ${({theme}) => theme.colors.title};
+    color: ${({ theme }) => theme.colors.title};
   }
 
   p {
     font-size: 1.25rem;
-    color: ${({theme}) => theme.colors.text};
+    color: ${({ theme }) => theme.colors.text};
     margin-top: 0.25rem;
   }
 
@@ -68,9 +68,9 @@ const Modal = styled(motion.div)`
   }
 
   a {
-    background: ${( {theme} ) => theme.colors.blueTwitter};
+    background: ${({ theme }) => theme.colors.blueTwitter};
     font-size: 1rem;
-    color: ${({theme}) => theme.colors.white};
+    color: ${({ theme }) => theme.colors.white};
     border-radius: 5px;
     width: 290px;
     height: 50px;
@@ -92,42 +92,35 @@ const LevelUpModal = () => {
     rendererSettings: {
       preserveAspectRatio: 'xMidYMid slice',
     },
-    speed: 1.5
+    speed: 1.5,
   }
 
   return (
     <Div>
       <Modal
-        transition={{ delay: 0.5, duration: 1}}
+        transition={{ delay: 0.5, duration: 1 }}
         variants={{
-          show: {opacity: 1, y: '0'},
-          hidden: {opacity: 0, y: '200px'},
+          show: { opacity: 1, y: '0' },
+          hidden: { opacity: 0, y: '200px' },
         }}
         initial="hidden"
         animate="show"
       >
         <div>
-          <Lottie
-            options={defaultAnimateOptions}
-            height={250}
-            width={250}
-          />
+          <Lottie options={defaultAnimateOptions} height={250} width={250} />
         </div>
         <header>{level}</header>
 
         <strong>Parabéns</strong>
         <p>Você alcançou um novo level.</p>
 
-        <button 
-          type="button"
-          onClick={closeLevelUpModal}
-        >
+        <button type="button" onClick={closeLevelUpModal}>
           <img src="/icons/close.svg" alt="close modal" />
         </button>
 
         <a href="">
           Compartilhar no twitter
-          <img src="/icons/twitter.svg" alt="twitter icon"/>
+          <img src="/icons/twitter.svg" alt="twitter icon" />
         </a>
       </Modal>
     </Div>
