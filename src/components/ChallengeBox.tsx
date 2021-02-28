@@ -12,6 +12,11 @@ const Div = styled.div`
   justify-content: center;
   text-align: center;
 
+  background: ${({ theme }) => theme.colors.white};
+  border-radius: 5px;
+  box-shadow: 0 0 60px rgba(0, 0, 0, 0.05);
+  padding: 1.5rem 2rem;
+
   header {
     color: ${({ theme }) => theme.colors.blue};
     font-weight: 600;
