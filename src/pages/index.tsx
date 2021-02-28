@@ -22,31 +22,25 @@ const Loading = styled.div`
 const LoginPage = () => {
   const [session, loading] = useSession()
 
-  if (session) {
-    useEffect(() => {
-      Router.push('/home')
-    }, [])
+  // if (typeof window !== 'undefined' && loading) return null
 
-    return (
-      <>
-        <Loading>
-          <h1>Carregando...</h1>
-        </Loading>
-      </>
-    )
-  }
+  useEffect(() => {
+    if (session) {
+      Router.push('/home')
+    }
+  }, [session])
 
   return (
     <>
+      <Head>
+        <title>Faça o login | move.it</title>
+      </Head>
       {loading && (
         <Loading>
           <h1>Carrregando...</h1>
         </Loading>
       )}
-      <Head>
-        <title>Faça o login | move.it</title>
-      </Head>
-      <Login />
+      {!loading && <Login />}
     </>
   )
 }

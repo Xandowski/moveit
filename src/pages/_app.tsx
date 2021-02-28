@@ -39,7 +39,7 @@ const GlobalStyle = createGlobalStyle`
   }
 
   body {
-    background: ${() => theme.colors.white};
+    background: ${() => theme.colors.background};
     color: ${() => theme.colors.text};
   }
 
