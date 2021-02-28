@@ -3,6 +3,7 @@ import { signIn } from 'next-auth/client'
 
 const Div = styled.div`
   background: ${({ theme }) => theme.colors.blue} no-repeat;
+  background-position: center left;
   background-image: url('/images/bg-logo.svg');
   height: 100vh;
 

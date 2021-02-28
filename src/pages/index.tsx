@@ -77,7 +77,7 @@ const Home = (props: HomeProps) => {
       )}
       {loading && (
         <Loading>
-          <h1>Carregado</h1>
+          <h1>Carregando</h1>
         </Loading>
       )}
     </>
