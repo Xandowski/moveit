@@ -1,21 +1,40 @@
 import styled from 'styled-components'
 import Link from '../components/Link'
+import { signOut } from 'next-auth/client'
 
 const NavBar = styled.nav`
   flex: 1;
   width: 6.8rem;
   height: 100vh;
   display: grid;
-  grid-template-rows: 1fr 1fr;
+  grid-template-rows: 1fr 1fr 1fr;
   position: absolute;
   background: ${({ theme }) => theme.colors.white};
   border-radius: 5px;
   box-shadow: 0 0 60px rgba(0, 0, 0, 0.05);
-  padding: 1.5rem 0;
+
+  div:first-child {
+    align-items: flex-start;
+  }
+
+  > div {
+    display: flex;
+    align-items: flex-end;
+    justify-content: center;
+    margin: 2.5rem 1.5rem;
+
+    button {
+      width: 45px;
+      height: 45px;
+      background: url('/icons/logout.svg') no-repeat;
+      border: none;
+    }
+  }
 
   ul {
     display: flex;
     flex-direction: column;
+    justify-content: center;
 
     a[aria-current] {
       border-left: 3px solid ${({ theme }) => theme.colors.blue};
@@ -45,7 +64,9 @@ const NavBar = styled.nav`
 const SideNavBar = () => {
   return (
     <NavBar>
-      <img src="/icons/logo.svg" alt="logo" />
+      <div>
+        <img src="/icons/logo.svg" alt="logo" />
+      </div>
       <ul>
         <Link href="/">
           <svg
@@ -100,6 +121,9 @@ const SideNavBar = () => {
           </svg>
         </Link>
       </ul>
+      <div>
+        <button onClick={() => signOut()}></button>
+      </div>
     </NavBar>
   )
 }

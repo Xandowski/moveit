@@ -1,3 +1,4 @@
+import styled from 'styled-components'
 import Head from 'next/head'
 import { CountdownProvider } from '../contexts/CountdownContext'
 import { GetServerSideProps } from 'next'
@@ -19,12 +20,34 @@ interface HomeProps {
   challengesCompleted: number
 }
 
+const Div = styled.div`
+  height: 100vh;
+  max-width: 992px;
+  margin: 0 auto;
+  padding: 2.5rem 2rem;
+
+  display: flex;
+  flex-direction: column;
+`
+
+const Loading = styled.div`
+  height: 100vh;
+  width: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: absolute;
+  z-index: 1;
+  background-color: ${({ theme }) => theme.colors.white};
+  color: ${({ theme }) => theme.colors.text};
+`
+
 const Home = (props: HomeProps) => {
-  const [session] = useSession()
+  const [session, loading] = useSession()
 
   return (
     <>
-      {!session && <Login />}
+      {!session && !loading && <Login />}
       {session && (
         <ChallengesProvider
           level={props.level}
@@ -32,7 +55,7 @@ const Home = (props: HomeProps) => {
           challengesCompleted={props.challengesCompleted}
         >
           <SideNavBar />
-          <div>
+          <Div>
             <Head>
               <title>Início | move.it</title>
             </Head>
@@ -49,8 +72,13 @@ const Home = (props: HomeProps) => {
                 </div>
               </section>
             </CountdownProvider>
-          </div>
+          </Div>
         </ChallengesProvider>
+      )}
+      {loading && (
+        <Loading>
+          <h1>Carregado</h1>
+        </Loading>
       )}
     </>
   )

@@ -39,20 +39,8 @@ const GlobalStyle = createGlobalStyle`
   }
 
   body {
-    background: ${() => theme.colors.background};
+    background: ${() => theme.colors.white};
     color: ${() => theme.colors.text};
-    
-    > div {
-      > div {
-        height: 100vh;
-        max-width: 992px;
-        margin: 0 auto;
-        padding: 2.5rem 2rem;
-
-        display: flex;
-        flex-direction: column;
-      }
-    }
   }
 
   body, input, textarea, button {
