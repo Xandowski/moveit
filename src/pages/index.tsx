@@ -1,34 +1,11 @@
 import styled from 'styled-components'
 import Head from 'next/head'
-import { CountdownProvider } from '../contexts/CountdownContext'
-import { GetServerSideProps } from 'next'
-import React from 'react'
-import { ChallengesProvider } from '../contexts/ChallengesContext'
-import { useSession } from 'next-auth/client'
+import React, { useEffect } from 'react'
+import { useSession, getSession } from 'next-auth/client'
 
-import ChallengeBox from '../components/ChallengeBox'
-import CompletedChallenges from '../components/CompletedChallenges'
-import Countdown from '../components/Countdown'
-import ExperienceBar from '../components/ExperienceBar'
-import Profile from '../components/Profile'
 import Login from '../components/Login'
-import SideNavBar from '../components/SideNavBar'
-
-interface HomeProps {
-  level: number
-  currentExperience: number
-  challengesCompleted: number
-}
-
-const Div = styled.div`
-  height: 100vh;
-  max-width: 992px;
-  margin: 0 auto;
-  padding: 2.5rem 2rem;
-
-  display: flex;
-  flex-direction: column;
-`
+import Router from 'next/router'
+import { GetServerSideProps } from 'next'
 
 const Loading = styled.div`
   height: 100vh;
@@ -42,58 +19,43 @@ const Loading = styled.div`
   color: ${({ theme }) => theme.colors.text};
 `
 
-const Home = (props: HomeProps) => {
+const LoginPage = () => {
   const [session, loading] = useSession()
+
+  if (session) {
+    useEffect(() => {
+      Router.push('/home')
+    }, [])
+
+    return (
+      <>
+        <Loading>
+          <h1>Carregando...</h1>
+        </Loading>
+      </>
+    )
+  }
 
   return (
     <>
-      {!session && !loading && <Login />}
-      {session && (
-        <ChallengesProvider
-          level={props.level}
-          currentExperience={props.currentExperience}
-          challengesCompleted={props.challengesCompleted}
-        >
-          <SideNavBar />
-          <Div>
-            <Head>
-              <title>Início | move.it</title>
-            </Head>
-            <ExperienceBar />
-            <CountdownProvider>
-              <section>
-                <div>
-                  <Profile />
-                  <CompletedChallenges />
-                  <Countdown />
-                </div>
-                <div>
-                  <ChallengeBox />
-                </div>
-              </section>
-            </CountdownProvider>
-          </Div>
-        </ChallengesProvider>
-      )}
       {loading && (
         <Loading>
-          <h1>Carregando</h1>
+          <h1>Carrregando...</h1>
         </Loading>
       )}
+      <Head>
+        <title>Faça o login | move.it</title>
+      </Head>
+      <Login />
     </>
   )
 }
 
-export default Home
+export default LoginPage
 
 export const getServerSideProps: GetServerSideProps = async (ctx) => {
-  const { level, currentExperience, challengesCompleted } = ctx.req.cookies
-
+  const session = await getSession(ctx)
   return {
-    props: {
-      level: Number(level),
-      currentExperience: Number(currentExperience),
-      challengesCompleted: Number(challengesCompleted),
-    },
+    props: { session },
   }
 }
