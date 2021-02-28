@@ -1,6 +1,7 @@
 import type { AppProps /* , AppContext */ } from 'next/app'
 import React from 'react'
 import { createGlobalStyle, ThemeProvider } from 'styled-components'
+import { Provider } from 'next-auth/client'
 
 const theme = {
   colors: {
@@ -73,21 +74,20 @@ const GlobalStyle = createGlobalStyle`
     grid-template-columns: 1fr 1fr;
     gap: 6.25rem;
     align-content: center;
-    
-    > div:last-child {
-      background: ${() => theme.colors.white};
-      border-radius: 5px;
-      box-shadow: 0 0 60px rgba(0, 0, 0, 0.05);
-      padding: 1.5rem 2rem;
-    }
+  }
+
+  li {
+    list-style: none;
   }
 `
 
 export default function MyApp({ Component, pageProps }: AppProps) {
   return (
     <ThemeProvider theme={theme}>
-      <GlobalStyle />
-      <Component {...pageProps} />
+      <Provider session={pageProps.session}>
+        <GlobalStyle />
+        <Component {...pageProps} />
+      </Provider>
     </ThemeProvider>
   )
 }

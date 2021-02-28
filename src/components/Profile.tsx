@@ -1,6 +1,7 @@
 import { useContext } from 'react'
 import styled from 'styled-components'
 import { ChallengesContext } from '../contexts/ChallengesContext'
+import { useSession } from 'next-auth/client'
 
 const ProfileContainer = styled.div`
   display: flex;
@@ -34,12 +35,13 @@ const ProfileContainer = styled.div`
 
 const Profile = () => {
   const { level } = useContext(ChallengesContext)
+  const [session] = useSession()
 
   return (
     <ProfileContainer>
-      <img src="https://github.com/Xandowski.png" alt="github avatar" />
+      <img src={`${session?.user.image}`} alt="github avatar" />
       <div>
-        <strong>Alexandre Morais</strong>
+        <strong>{session?.user.name}</strong>
         <p>
           <img src="icons/level.svg" alt="level" />
           Level {level}
