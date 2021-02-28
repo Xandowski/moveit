@@ -68,7 +68,7 @@ const SideNavBar = () => {
         <img src="/icons/logo.svg" alt="logo" />
       </div>
       <ul>
-        <Link href="/">
+        <Link href="/home">
           <svg
             width="32"
             height="32"
