@@ -32,24 +32,19 @@ const Div = styled.div`
 `
 
 const Home = (props: HomeProps) => {
-  const [session] = useSession()
+  const [session, loading] = useSession()
 
-  if (!session) {
-    useEffect(() => {
+  useEffect(() => {
+    if (!session) {
       setTimeout(() => {
         Router.push('/')
       }, 1000)
-    }, [])
-    return (
-      <>
-        <Loading />
-      </>
-    )
-  }
+    }
+  }, [])
 
-  if (session) {
-    return (
-      <>
+  return (
+    <>
+      {(session && (
         <ChallengesProvider
           level={props.level}
           currentExperience={props.currentExperience}
@@ -75,9 +70,10 @@ const Home = (props: HomeProps) => {
             </CountdownProvider>
           </Div>
         </ChallengesProvider>
-      </>
-    )
-  }
+      )) ||
+        (loading && <Loading />)}
+    </>
+  )
 }
 
 export default Home

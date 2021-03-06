@@ -28,23 +28,13 @@ const Div = styled.div`
 const leaderboard = (props: LeaderboardProps) => {
   const [session, loading] = useSession()
 
-  // if (!session) {
-  //   useEffect(() => {
-  //     setTimeout(() => {
-  //       Router.push('/')
-  //     }, 1000)
-  //   }, [])
-  //   return (
-  //     <>
-  //       <Loading />
-  //     </>
-  //   )
-  // }
   useEffect(() => {
-    setTimeout(() => {
-      Router.push('/')
-    }, 1000)
-  }, [session])
+    if (!session) {
+      setTimeout(() => {
+        Router.push('/')
+      }, 1000)
+    }
+  }, [])
 
   return (
     <>
