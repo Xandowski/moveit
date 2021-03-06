@@ -13,6 +13,7 @@ import ExperienceBar from '../components/ExperienceBar'
 import Profile from '../components/Profile'
 import SideNavBar from '../components/SideNavBar'
 import Router from 'next/router'
+import Loading from '../components/Loading'
 
 interface HomeProps {
   level: number
@@ -30,18 +31,6 @@ const Div = styled.div`
   flex-direction: column;
 `
 
-const Loading = styled.div`
-  height: 100vh;
-  width: 100vh;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  position: absolute;
-  z-index: 1;
-  background-color: ${({ theme }) => theme.colors.white};
-  color: ${({ theme }) => theme.colors.text};
-`
-
 const Home = (props: HomeProps) => {
   const [session] = useSession()
 
@@ -53,9 +42,7 @@ const Home = (props: HomeProps) => {
     }, [])
     return (
       <>
-        <Loading>
-          <h1>Carregando...</h1>
-        </Loading>
+        <Loading />
       </>
     )
   }

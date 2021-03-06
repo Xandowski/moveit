@@ -4,6 +4,7 @@ import Router from 'next/router'
 import { useEffect } from 'react'
 import styled from 'styled-components'
 import LeaderboardTable from '../components/LeaderboardTable'
+import Loading from '../components/Loading'
 import SideNavBar from '../components/SideNavBar'
 import { ChallengesProvider } from '../contexts/ChallengesContext'
 
@@ -24,54 +25,48 @@ const Div = styled.div`
   flex-direction: column;
 `
 
-const Loading = styled.div`
-  height: 100vh;
-  width: 100vh;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  position: absolute;
-  z-index: 1;
-  background-color: ${({ theme }) => theme.colors.white};
-  color: ${({ theme }) => theme.colors.text};
-`
-
 const leaderboard = (props: LeaderboardProps) => {
-  const [session] = useSession()
+  const [session, loading] = useSession()
 
-  if (!session) {
-    useEffect(() => {
-      setTimeout(() => {
-        Router.push('/')
-      }, 1000)
-    }, [])
-    return (
-      <>
-        <Loading>
-          <h1>Carregando...</h1>
-        </Loading>
-      </>
-    )
-  }
+  // if (!session) {
+  //   useEffect(() => {
+  //     setTimeout(() => {
+  //       Router.push('/')
+  //     }, 1000)
+  //   }, [])
+  //   return (
+  //     <>
+  //       <Loading />
+  //     </>
+  //   )
+  // }
+  useEffect(() => {
+    setTimeout(() => {
+      Router.push('/')
+    }, 1000)
+  }, [session])
 
-  if (session) {
-    return (
-      <ChallengesProvider
-        level={props.level}
-        currentExperience={props.currentExperience}
-        challengesCompleted={props.challengesCompleted}
-        totalExperience={props.totalExperience}
-      >
-        <SideNavBar />
-        <Div>
-          <Head>
-            <title>Leaderboard | move.it</title>
-          </Head>
-          <LeaderboardTable />
-        </Div>
-      </ChallengesProvider>
-    )
-  }
+  return (
+    <>
+      {(session && (
+        <ChallengesProvider
+          level={props.level}
+          currentExperience={props.currentExperience}
+          challengesCompleted={props.challengesCompleted}
+          totalExperience={props.totalExperience}
+        >
+          <SideNavBar />
+          <Div>
+            <Head>
+              <title>Leaderboard | move.it</title>
+            </Head>
+            <LeaderboardTable />
+          </Div>
+        </ChallengesProvider>
+      )) ||
+        (loading && <Loading />)}
+    </>
+  )
 }
 
 export default leaderboard
