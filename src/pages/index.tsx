@@ -1,17 +1,17 @@
-import styled from 'styled-components'
-import Head from 'next/head'
 import React, { useEffect } from 'react'
+import { GetServerSideProps } from 'next'
+import Head from 'next/head'
+import Router from 'next/router'
 import { useSession, getSession } from 'next-auth/client'
 
 import Login from '../components/Login'
-import Router from 'next/router'
-import { GetServerSideProps } from 'next'
 import Loading from '../components/Loading'
+
+// import { setToLS } from '../utils/cookies'
 
 const LoginPage = () => {
   const [session, loading] = useSession()
-
-  // if (typeof window !== 'undefined' && loading) return null
+  // setToLS('all-themes', themes.data.light)
 
   useEffect(() => {
     if (session) {

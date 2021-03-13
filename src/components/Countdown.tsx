@@ -31,10 +31,14 @@ const Div = styled.div`
     span {
       flex: 1;
     }
+
+    span:first-child {
+      border-right: 1px solid #f8f1f3;
+    }
   }
 
   div {
-    background-color: white;
+    background-color: ${(props) => props.theme.colors.white};
   }
 
   > span {
@@ -94,21 +98,13 @@ const Countdown = () => {
     <div>
       <Div>
         <div>
-          <TimeNumber side="right" value="-100px">
-            {minutesLeftString}
-          </TimeNumber>
-          <TimeNumber side="right" value="100px">
-            {minutesRightString}
-          </TimeNumber>
+          <TimeNumber value="-100px">{minutesLeftString}</TimeNumber>
+          <TimeNumber value="100px">{minutesRightString}</TimeNumber>
         </div>
         <span>:</span>
         <div>
-          <TimeNumber side="right" value="-100px">
-            {secondsLeftString}
-          </TimeNumber>
-          <TimeNumber side="right" value="100px">
-            {secondsRightString}
-          </TimeNumber>
+          <TimeNumber value="-100px">{secondsLeftString}</TimeNumber>
+          <TimeNumber value="100px">{secondsRightString}</TimeNumber>
         </div>
       </Div>
       {hasFinished ? (

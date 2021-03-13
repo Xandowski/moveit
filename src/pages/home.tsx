@@ -19,6 +19,7 @@ interface HomeProps {
   level: number
   currentExperience: number
   challengesCompleted: number
+  toggleTheme(): void
 }
 
 const Div = styled.div`
@@ -50,7 +51,7 @@ const Home = (props: HomeProps) => {
           currentExperience={props.currentExperience}
           challengesCompleted={props.challengesCompleted}
         >
-          <SideNavBar />
+          <SideNavBar toggleTheme={props.toggleTheme} />
           <Div>
             <Head>
               <title>Início | move.it</title>

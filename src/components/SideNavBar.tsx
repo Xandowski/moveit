@@ -1,6 +1,12 @@
+import { useContext } from 'react'
 import styled from 'styled-components'
 import Link from '../components/Link'
 import { signOut } from 'next-auth/client'
+import { ThemeContext } from 'styled-components'
+import { shade } from 'polished'
+
+import Switch from 'react-switch'
+import { ThemeSwitchContext } from '../contexts/ThemeSwitchContext'
 
 const NavBar = styled.nav`
   flex: 1;
@@ -58,10 +64,24 @@ const NavBar = styled.nav`
       display: flex;
       justify-content: center;
     }
+
+    li {
+      margin-top: 2.5rem;
+      display: flex;
+      justify-content: center;
+      transform: rotate(90deg);
+    }
   }
 `
 
+// interface SideNavBarProps {
+//   toggleTheme(): void
+// }
+
 const SideNavBar = () => {
+  const { colors, title } = useContext(ThemeContext)
+  const { toggleTheme } = useContext(ThemeSwitchContext)
+
   return (
     <NavBar>
       <div>
@@ -120,6 +140,20 @@ const SideNavBar = () => {
             </g>
           </svg>
         </Link>
+        <li>
+          <Switch
+            onChange={toggleTheme}
+            checked={title === 'dark'}
+            checkedIcon={false}
+            uncheckedIcon={false}
+            height={10}
+            width={40}
+            handleDiameter={20}
+            offColor={shade(-0.5, colors.text)}
+            offHandleColor={colors.blue}
+            onHandleColor={colors.blue}
+          />
+        </li>
       </ul>
       <div>
         <button onClick={() => signOut()}></button>
